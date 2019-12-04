@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shoulaxiao.demo01.dao.MovieActorConfigDao" >
+    <resultMap id="configResultMap" type="com.shoulaxiao.demo01.entity.MovieActorConfig" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="movieId" property="movieId" jdbcType="INTEGER" />
+        <result column="actorId" property="actorId" javaType="INTEGER" />
+    </resultMap>
+
+
+    <select id="selectMovieActorConfig"  resultMap="configResultMap">
+            SELECT * FROM movie_actor_config
+    </select>
+
+    <select id="selectMovieActorConfigByMovie"  resultMap="configResultMap">
+            SELECT * FROM movie_actor_config WHERE movieId=#{movieId}
+    </select>
+
+    <select id="selectMovieActorConfigByeActor"  resultMap="configResultMap">
+            SELECT * FROM movie_actor_config WHERE actorId=#{actorId}
+    </select>
+</mapper>

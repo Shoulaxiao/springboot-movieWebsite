@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shoulaxiao.demo01.dao.MovieDao" >
+    <resultMap id="movieResultMap" type="com.shoulaxiao.demo01.entity.Movie" >
+        <id column="movie_id" property="movieId"/>
+        <result column="movie_name" property="movieName"  />
+        <result column="movie_time" property="date" />
+        <result column="movie_des" property="movieDes"  />
+
+        <collection property="actors" ofType="com.shoulaxiao.demo01.entity.Actor" resultMap="acotrResultMap">
+        </collection>
+    </resultMap>
+
+    <resultMap id="acotrResultMap" type="com.shoulaxiao.demo01.entity.Actor">
+        <id column="act_id" property="actId" />
+        <result column="act_name" property="actName" />
+        <result column="act_age" property="actAge"  />
+    </resultMap>
+
+
+
+    <select id="selectAllMovie"  resultMap="movieResultMap">
+        SELECT m.*,a.* FROM movie m LEFT OUTER JOIN movie_actor_config mc ON m.movie_id=mc.movieId
+           LEFT OUTER JOIN actor a ON a.act_id=mc.actorId
+    </select>
+
+</mapper>
