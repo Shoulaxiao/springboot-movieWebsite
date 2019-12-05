@@ -25,11 +25,7 @@ public class SpiderMovieDetail extends SpiderCommon {
                 String title=link.text();
                 //获取链接
                 Elements elements = doc.select("div#Zoom");
-
-                System.out.println(elements);
-
                 Element element = elements.select("a[href]").first();
-                System.out.println(element);
                 if(element!=null){
                     String href = element.attr("href");
                     movie.setDownloadUrl(href);

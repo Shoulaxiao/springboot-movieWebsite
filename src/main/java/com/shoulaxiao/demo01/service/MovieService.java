@@ -11,4 +11,13 @@ public interface MovieService {
      * @return
      */
     List<Movie> findList();
+
+    /**
+     * 批量插入
+     * @param list
+     * @return
+     */
+    List<Movie> insertMovies(List<Movie> list);
+
+    int insertMovie(Movie movie);
 }

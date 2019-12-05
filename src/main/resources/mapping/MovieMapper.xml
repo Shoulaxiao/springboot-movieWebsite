@@ -18,11 +18,22 @@
         <result column="act_age" property="actAge"  />
     </resultMap>
 
-
-
     <select id="selectAllMovie"  resultMap="movieResultMap">
         SELECT m.*,a.* FROM movie m LEFT OUTER JOIN movie_actor_config mc ON m.movie_id=mc.movieId
            LEFT OUTER JOIN actor a ON a.act_id=mc.actorId
     </select>
 
+    <insert id="insertByList" parameterType="java.util.List" useGeneratedKeys="true">
+
+        INSERT INTO movie (movie_name,movie_time,movie_des,movie_url)
+        VALUES 
+        <foreach collection="movieList" item="movie" index= "index" separator =",">
+            #{movie.movieName},#{movie.date},#{movie.movieDes},#{movie.downloadUrl}
+        </foreach>
+    </insert>
+
+    <insert id="insertSingle" parameterType="com.shoulaxiao.demo01.entity.Movie" useGeneratedKeys="true">
+        INSERT INTO movie (movie_name,movie_time,movie_des,movie_url)
+        VALUES  (#{movieName},#{date},#{movieDes},#{downloadUrl})
+    </insert>
 </mapper>

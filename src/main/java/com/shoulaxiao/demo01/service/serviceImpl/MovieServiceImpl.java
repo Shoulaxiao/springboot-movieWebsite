@@ -19,4 +19,14 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> findList( ) {
         return movieDao.selectAllMovie();
     }
+
+    @Override
+    public List<Movie> insertMovies(List<Movie> list) {
+        return movieDao.selectAllMovie();
+    }
+
+    @Override
+    public int insertMovie(Movie movie) {
+        return movieDao.insertSingle(movie);
+    }
 }

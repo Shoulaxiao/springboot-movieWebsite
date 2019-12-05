@@ -1,5 +1,7 @@
 package com.shoulaxiao.demo01;
 
+import com.shoulaxiao.demo01.common.movieSpider.SpiderMovieDetail;
+import com.shoulaxiao.demo01.common.movieSpider.SpiderMovieList;
 import com.shoulaxiao.demo01.dao.MovieActorConfigDao;
 import com.shoulaxiao.demo01.entity.Actor;
 import com.shoulaxiao.demo01.entity.Movie;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -59,6 +62,38 @@ class Demo01ApplicationTests {
         for(Actor actor:list){
             System.out.println(actor);
         }
+    }
+
+    @Test
+    void tetsMovieByBatch() throws Exception{
+
+        String INDEX_DYZZ="https://www.dy2018.com/html/gndy/dyzz/index.html";
+        List<Movie> movieList=new ArrayList<>();
+
+        SpiderMovieDetail detail=new SpiderMovieDetail();
+
+        List<String> list = SpiderMovieList.getAllMovieUrl(10, INDEX_DYZZ);
+
+        for (int i = 0; i < list.size(); i++) {
+            //获取详情页数据
+            detail.search(list.get(i));
+            movieList.add(detail.getMovie());
+            System.out.println("**********爬取详情页**********"+i+"完成");
+        }
+
+//        List<Movie> result=movieService.insertMovies(movieList);
+//        if (result.size()>0){
+//            for (Movie m:result){
+//                System.out.println(m);
+//            }
+//        }
+        for (Movie m:movieList){
+            int i=movieService.insertMovie(m);
+            if (i>0){
+                System.out.println("插入成功");
+            }
+        }
+
     }
 
 }
