@@ -14,6 +14,8 @@ public class Movie implements Serializable {
 //    private List<MovieType> type;
     private List<Actor> actors;
 
+    private String downloadUrl;
+
     public int getMovieId() {
         return movieId;
     }
@@ -62,6 +64,14 @@ public class Movie implements Serializable {
         this.movieDes = movieDes;
     }
 
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        downloadUrl = downloadUrl;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -70,6 +80,7 @@ public class Movie implements Serializable {
                 ", date=" + date +
                 ", movieDes='" + movieDes + '\'' +
                 ", actors=" + actors +
+                ", downloadUrl='" + downloadUrl + '\'' +
                 '}';
     }
 }

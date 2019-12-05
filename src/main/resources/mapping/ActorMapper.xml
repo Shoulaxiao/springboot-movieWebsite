@@ -11,12 +11,13 @@
             <result column="movie_name" property="movieName" />
             <result column="movie_time" property="date" />
             <result column="movie_des" property="movieDes"  />
+            <result column="movie_url" property="downloadUrl"  />
         </collection>
     </resultMap>
 
 
     <select id="selectAll" resultMap="actorResultMap">
-        SELECT * FROM actor a LEFT OUTER JOIN movie_actor_config ac ON a.act_id=ac.actorId
+        SELECT a.*,m.* FROM actor a LEFT OUTER JOIN movie_actor_config ac ON a.act_id=ac.actorId
           LEFT OUTER JOIN movie m ON m.movie_id=ac.movieId
     </select>
 </mapper>

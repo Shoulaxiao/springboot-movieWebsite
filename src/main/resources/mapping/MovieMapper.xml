@@ -6,6 +6,7 @@
         <result column="movie_name" property="movieName"  />
         <result column="movie_time" property="date" />
         <result column="movie_des" property="movieDes"  />
+        <result column="movie_url" property="downloadUrl"  />
 
         <collection property="actors" ofType="com.shoulaxiao.demo01.entity.Actor" resultMap="acotrResultMap">
         </collection>
