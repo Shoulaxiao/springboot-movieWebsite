@@ -1,8 +1,7 @@
 package com.shoulaxiao.demo01;
 
-import com.shoulaxiao.demo01.common.movieSpider.SpiderMovieDetail;
-import com.shoulaxiao.demo01.common.movieSpider.SpiderMovieList;
-import com.shoulaxiao.demo01.dao.MovieActorConfigDao;
+import com.shoulaxiao.demo01.common.movieSpider.spider01.SpiderMovieDetail;
+import com.shoulaxiao.demo01.common.movieSpider.spider01.SpiderMovieList;
 import com.shoulaxiao.demo01.entity.Actor;
 import com.shoulaxiao.demo01.entity.Movie;
 import com.shoulaxiao.demo01.entity.MovieActorConfig;
@@ -10,10 +9,8 @@ import com.shoulaxiao.demo01.service.ActorService;
 import com.shoulaxiao.demo01.service.MovieActorConfigService;
 import com.shoulaxiao.demo01.service.MovieService;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,19 +78,27 @@ class Demo01ApplicationTests {
             System.out.println("**********爬取详情页**********"+i+"完成");
         }
 
-//        List<Movie> result=movieService.insertMovies(movieList);
-//        if (result.size()>0){
-//            for (Movie m:result){
-//                System.out.println(m);
-//            }
-//        }
-        for (Movie m:movieList){
-            int i=movieService.insertMovie(m);
-            if (i>0){
-                System.out.println("插入成功");
-            }
-        }
 
+        for (Movie m:movieList){
+            System.out.println(m.getBriefIntoduction());
+            Movie mm=movieService.findByMovieByName(m.getMovieName());
+            if (mm!=null){
+                continue;
+            }
+            movieService.insertMovie(m);
+        }
     }
 
+    @Test
+    void testSelectMovieByName(){
+        String name="犯罪现场";
+        Movie movie=movieService.findByMovieByName(name);
+        System.out.println(movie);
+    }
+
+    @Test
+    void TestSpit(){
+        Actor actor=actorService.getActorByName("吴京");
+        System.out.println(actor);
+    }
 }

@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+
 public class Actor implements Serializable {
 
     private int actId;
     private String actName;
     private int actAge;
-    private List<Movie> movies;//演员的作品
+
+    //演员的作品
+    private List<Movie> movies;
 
     public int getActId() {
         return actId;

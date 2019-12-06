@@ -2,12 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shoulaxiao.demo01.dao.MovieDao" >
     <resultMap id="movieResultMap" type="com.shoulaxiao.demo01.entity.Movie" >
-        <id column="movie_id" property="movieId"/>
-        <result column="movie_name" property="movieName"  />
-        <result column="movie_time" property="date" />
-        <result column="movie_des" property="movieDes"  />
-        <result column="movie_url" property="downloadUrl"  />
-
+        <id column="id" property="movieId"/>
+        <result column="name" property="movieName"  />
+        <result column="years" property="years" />
+        <result column="place" property="placeOrigin"  />
+        <result column="category" property="category"  />
+        <result column="language" property="language"  />
+        <result column="releasedate" property="releaseDate"  />
+        <result column="imdbsocre" property="imdbSocre"  />
+        <result column="beansocre" property="beanSocre"  />
+        <result column="fileformat" property="fileFormat"  />
+        <result column="vedioszie" property="vedioSzie"  />
+        <result column="sheellenth" property="sheelLenth"  />
+        <result column="imgurl" property="imgUrl"  />
+        <result column="brief" property="briefIntoduction"  />
         <collection property="actors" ofType="com.shoulaxiao.demo01.entity.Actor" resultMap="acotrResultMap">
         </collection>
     </resultMap>
@@ -18,22 +26,37 @@
         <result column="act_age" property="actAge"  />
     </resultMap>
 
+    <!--查询所有的电影-->
     <select id="selectAllMovie"  resultMap="movieResultMap">
-        SELECT m.*,a.* FROM movie m LEFT OUTER JOIN movie_actor_config mc ON m.movie_id=mc.movieId
+        SELECT m.*,a.* FROM tb_movie m LEFT OUTER JOIN movie_actor_config mc ON m.id=mc.movieId
            LEFT OUTER JOIN actor a ON a.act_id=mc.actorId
     </select>
 
-    <insert id="insertByList" parameterType="java.util.List" useGeneratedKeys="true">
 
-        INSERT INTO movie (movie_name,movie_time,movie_des,movie_url)
+    <!--通过电影的名字查找-->
+    <select id="selectByMovieByName" parameterType="java.lang.String" resultMap="movieResultMap">
+        SELECT * FROM tb_movie WHERE name LIKE CONCAT('%',#{movieName},'%')
+    </select>
+
+
+    <!--批量插入电影-->
+    <insert id="insertByList" parameterType="java.util.List" useGeneratedKeys="true">
+        INSERT INTO tb_movie(name,years,place,category,language,releasedate,imdbsocre,beansocre,fileformat,vedioszie,sheellenth
+        imgurl,brief)
         VALUES 
         <foreach collection="movieList" item="movie" index= "index" separator =",">
-            #{movie.movieName},#{movie.date},#{movie.movieDes},#{movie.downloadUrl}
+            #{movie.movieName},#{movie.years},#{movie.placeOrigin},#{movie.category},#{movie.language},#{movie.releaseDate},
+            #{movie.imdbSocre},#{movie.beanSocre},#{movie.fileFormat}
+            ,#{movie.vedioSzie},#{movie.sheelLenth},#{movie.imgUrl},#{movie.briefIntoduction}
         </foreach>
     </insert>
 
+
+    <!--单个插入电影-->
     <insert id="insertSingle" parameterType="com.shoulaxiao.demo01.entity.Movie" useGeneratedKeys="true">
-        INSERT INTO movie (movie_name,movie_time,movie_des,movie_url)
-        VALUES  (#{movieName},#{date},#{movieDes},#{downloadUrl})
+        INSERT INTO tb_movie (name,years,place,category,language,releasedate,imdbsocre,beansocre,fileformat,vedioszie,sheellenth,
+        imgurl,brief)
+        VALUES  (#{movieName},#{years},#{placeOrigin},#{category},#{language},#{releaseDate},#{imdbSocre},#{beanSocre},#{fileFormat}
+        ,#{vedioSzie},#{sheelLenth},#{imgUrl},#{briefIntoduction})
     </insert>
 </mapper>

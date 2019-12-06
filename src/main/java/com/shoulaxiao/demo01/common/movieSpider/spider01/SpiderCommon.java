@@ -1,4 +1,4 @@
-package com.shoulaxiao.demo01.common.movieSpider;
+package com.shoulaxiao.demo01.common.movieSpider.spider01;
 
 import java.io.IOException;
 

@@ -17,11 +17,25 @@ public interface MovieDao {
      */
     List<Movie> selectAllMovie();
 
+
+    /**
+     * 根据电影名字查询
+     * @param movieName
+     * @return 返回查询的电影
+     */
+    Movie selectByMovieByName(@Param("movieName") String movieName);
+
     /**
      * 批量插入
      * @param movieList
+     * @return 一个整数
      */
     int insertByList(@Param("movieList") List<Movie> movieList);
 
+    /**
+     * 单个插入
+     * @param movie
+     * @return 插入成功，返回一个证书
+     */
     int insertSingle(Movie movie);
 }

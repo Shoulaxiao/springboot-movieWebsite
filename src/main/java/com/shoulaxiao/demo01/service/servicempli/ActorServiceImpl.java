@@ -1,4 +1,4 @@
-package com.shoulaxiao.demo01.service.serviceImpl;
+package com.shoulaxiao.demo01.service.servicempli;
 
 import com.shoulaxiao.demo01.dao.ActorDao;
 import com.shoulaxiao.demo01.entity.Actor;
@@ -18,5 +18,21 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public List<Actor> getAll() {
         return actorDao.selectAll();
+    }
+
+    @Override
+    public Actor getActorByName(String actName) {
+        if (actName==null){
+            System.out.println("actName不能为空");
+        }
+        return actorDao.selectOne(actName);
+    }
+
+    @Override
+    public int insertActor(Actor actor) {
+        if (actor==null){
+            return 0;
+        }
+        return actorDao.insertActor(actor);
     }
 }

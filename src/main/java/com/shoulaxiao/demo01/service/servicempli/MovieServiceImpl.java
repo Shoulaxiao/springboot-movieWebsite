@@ -1,4 +1,4 @@
-package com.shoulaxiao.demo01.service.serviceImpl;
+package com.shoulaxiao.demo01.service.servicempli;
 
 
 import com.shoulaxiao.demo01.dao.MovieDao;
@@ -16,8 +16,13 @@ public class MovieServiceImpl implements MovieService {
     private MovieDao movieDao;
 
     @Override
-    public List<Movie> findList( ) {
+    public List<Movie> findList() {
         return movieDao.selectAllMovie();
+    }
+
+    @Override
+    public Movie findByMovieByName(String movieName) {
+        return movieDao.selectByMovieByName(movieName);
     }
 
     @Override

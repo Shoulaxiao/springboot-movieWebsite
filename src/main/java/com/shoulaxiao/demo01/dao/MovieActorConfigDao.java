@@ -19,14 +19,17 @@ public interface MovieActorConfigDao {
      */
     List<MovieActorConfig> selectMovieActorConfig();
 
+
     /**
      * 根据电影查询
+     * @param movieId 电影movieId
      * @return
      */
     List<MovieActorConfig> selectMovieActorConfigByMovie(int movieId);
 
     /**
      * 根据演员查询
+     * @param actorId 演员Id
      * @return
      */
     List<MovieActorConfig> selectMovieActorConfigByeActor(int actorId);

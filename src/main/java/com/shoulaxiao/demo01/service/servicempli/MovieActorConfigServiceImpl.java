@@ -1,4 +1,4 @@
-package com.shoulaxiao.demo01.service.serviceImpl;
+package com.shoulaxiao.demo01.service.servicempli;
 
 import com.shoulaxiao.demo01.dao.MovieActorConfigDao;
 import com.shoulaxiao.demo01.entity.MovieActorConfig;
