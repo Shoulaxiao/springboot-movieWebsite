@@ -89,7 +89,6 @@ class Demo01ApplicationTests {
         }
     }
 
-    @Test
     void testSelectMovieByName(){
         String name="犯罪现场";
         Movie movie=movieService.findByMovieByName(name);
@@ -101,4 +100,11 @@ class Demo01ApplicationTests {
         Actor actor=actorService.getActorByName("吴京");
         System.out.println(actor);
     }
+
+
+    @Test
+    public void testStart(){
+        testSelectMovieByName();
+    }
+
 }

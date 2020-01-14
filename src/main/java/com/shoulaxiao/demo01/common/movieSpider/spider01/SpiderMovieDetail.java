@@ -6,7 +6,6 @@ import com.shoulaxiao.demo01.entity.Movie;
 import com.shoulaxiao.demo01.util.StringUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class SpiderMovieDetail extends SpiderCommon {
     private Movie movie;
 
     @Override
-    public void search(String url) throws Exception {
+    public void execute(String url) throws Exception {
         movie=new Movie();
 
         String htmlPage=CommonMethod.getHtmlPage(url);

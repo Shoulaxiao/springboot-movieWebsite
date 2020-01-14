@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class SpiderCommon {
 
-    public void search(String url) throws Exception {
+    public void execute(String url) throws Exception {
         System.out.println("The method will be override!");
     }
 }
